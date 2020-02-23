@@ -31,7 +31,7 @@ public class JdbcAccountManager implements AccountManager {
 
 	private void setAmountOfMoney(Connection connection, String accountNumber, double newAmount) throws SQLException {
 		PreparedStatement transferStatement = connection.prepareStatement(
-			// @formatter:off
+			// @formatter:off Wyłączam formtowanie na chwile zeby intellij nam nie podzielił linijki
 						"UPDATE accounts SET amountOfMoney = ? WHERE accountNumber = ?"
 						// @formatter:on
 		);

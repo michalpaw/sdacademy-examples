@@ -25,12 +25,16 @@ class JpaIntegrationTest {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		// persist transient user entity
-		entityManager.persist(user);
+		entityManager.persist(user); // DObiera opcje czy chcey dopisać nowy rekordy czy zupdatować
+		// istniejący, ale rzuci wyjątkiem gdy dana encja już istnieje
+		//Bezpieczniejsza jest opcja merge - sprawdza ona pole po polu czy się zmieniło i dobiera update lub
+		// isert w zaleznosci od potrzeb
+		entityManager.merge(user);
 		// commit the transaction - now the user should be persisted
 		transaction.commit();
 
 		// then
-		// find saved user
+		// find saved user - wywołuje query zdefinowane w klasie modelowej user
 		User foundUser = entityManager.createNamedQuery("User.findByName", User.class).setParameter("name",
 			"goobar").getSingleResult();
 		Assertions.assertThat(foundUser.getName()).isEqualTo("goobar");

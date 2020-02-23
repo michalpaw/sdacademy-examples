@@ -11,6 +11,7 @@ public class DataSourceFactory {
 		return h2DataSource();
 	}
 
+
 	public static DataSource anonymousH2() {
 		JdbcDataSource jdbcDataSource = new JdbcDataSource();
 		jdbcDataSource.setUser("sa");

@@ -40,7 +40,6 @@ public class JdbcHelloWorldTest {
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM my_table");
 			resultSet.next();
 			String name = resultSet.getString("name");
-
 			assertThat(name).isEqualTo("goobar");
 		}
 	}
